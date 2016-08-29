@@ -1,6 +1,9 @@
-# Cable News Programming and the Mind
+% Cable News Programming and the Mind (Notes/Whitepaper)
+% Matthew Turner
+% August 28, 2016
 
-## Introduction
+
+# Introduction
 
 The world is full of opposing forces that hold the whole in a state of
 perpetual tension. Without that tension the thing would cease to exist. When
@@ -71,7 +74,7 @@ another? What is the source of variance in these times? What are the classes
 of metaphor and other linguistic features?
 
 
-## Internet Archive, Corpus Building, and Auto-summarization
+# Internet Archive, Corpus Building, and Auto-summarization
 
 At this time, [foxsay.io](http://foxsay.io) is live, updated hourly by the
 script [update_foxsay.py](https://github.com/mtpain/foxsay.io/blob/master/update_foxsay.py). There are two relevant GitHub repositories to know about to understand
@@ -165,7 +168,7 @@ https://archive.org/details/tv?fc=channel:%22FOXNEWSW%22&output=json)
 All we get is a hodgepodge of badly formatted elements.
 
 
-### Auto-summarization and foxsay.io
+## Auto-summarization and foxsay.io
 
 When I started thinking about addressing the issues of what cable news is saying
 and how it effects cognition, one of the first thoughts that came to mind was
@@ -238,9 +241,9 @@ http://scholar.google.com/citations?user=0fTuW_YAAAAJ&hl=en) and
 [http://www.kiv.zcu.cz/~jstein/publikace/isim2004.pdf](
 http://www.kiv.zcu.cz/~jstein/publikace/isim2004.pdf).
 
-## Road map
+# Road map
 
-### Short-term ("corpus plus")
+## Short-term ("corpus plus")
 
 [foxsay.io](http://foxsay.io) will serve as a testing ground for corpus
 development. I'll use it to make sure the corpus is building properly by
@@ -253,7 +256,7 @@ related to those topics.
 It may also be interesting to summarize each news network every day and organize
 it similarly to the current `foxsay.io`, but replace shows with networks.
 
-### Medium-term
+## Medium-term
 
 As for more linguistically sophisticated analyses, beyond "corpus plus", I
 plan to analyze the framing of particular issues, such as climate change,
@@ -267,7 +270,7 @@ are the tastemakers for phrasing in the cable news ecosystem? Once we've
 identified some of these sorts of patterns we can start to dig deeper and
 examine the connection between the language of cable news and cognition.
 
-### Long-term
+## Long-term
 
 These ideas will surely evolve as time passes, but for now here's where I'm
 thinking this project will go in the longer-term. I'd like to take the
@@ -279,7 +282,7 @@ train cognitive models with the visual and audio inputs as well, and see the
 effect this has on pragmatic actions. It may be interesting to try to predict
 voting or other political behavior from cable news content.
 
-### At all stages
+## At all stages
 
 Another component to all of this is a better understanding of the mix of
 media that the average person consumes. There are definitely polls that
