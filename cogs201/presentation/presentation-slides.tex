@@ -7,6 +7,9 @@
 
 \usepackage{listings}
 % \usepackage[spanish]{babel}
+\usepackage{biblatex}
+\bibliography{bib.bib}
+
 
 % Theme for beamer presentation.
 \usepackage{beamerthemesplit}
@@ -14,23 +17,51 @@
 \usetheme{Berkeley}
 \begin{document}
 
+\section{Introduction \& Outline}
+\begin{frame}{Introduction \& Outline}
+    Parallel Distributed Processing (PDE)
+    \begin{enumerate}
+        \item History of PDP:\@ Development of PDE and post-PDE developments
+        \item Application of PDP: On Learning the Past Tenses of English Verbs
+        \item TensorFlow Example: Learning to classify hand-drawn digits
+        \item ``Deep learning''
+    \end{enumerate}
+\end{frame}
+
+\section{History of PDE}
 \begin{frame}{Hebbian rule}
 
-Suppose \(m\) orthogonal vectors \(\mathbf{a}(1) \ldots \mathbf{a}(m)\)
+    Suppose \(m\) orthogonal vectors \(\mathbf{a}(1) \ldots \mathbf{a}(m)\)
 
-Weights matrix is written
+    Weights matrix is written \footfullcite{Rumelhart1986a}
 
-\begin{equation}
-    w_{ij} = \sum_{p=1}^m \mathbf{a}_i(p) \mathbf{a}_j(p)
-\end{equation}
+    \begin{equation}
+        w_{ij} = \sum_{p=1}^m \mathbf{a}_i(p) \mathbf{a}_j(p)
+    \end{equation}
 
 \end{frame}
 
-\begin{frame}{Training Procedure}
-    \begin{itemize}
-        \item Yo
-        \item Mama
-    \end{itemize}
+\section{PDP application: Past tenses of English verbs}
+\begin{frame}{PDP application: Past tenses of English verbs}
+    A response to avoid the formal grammar approach,
+    which established a priori axioms and derived generative grammars
+    from there.
+
+    Instead of prescribing rules, the ``PDP Research Group'' claim their model
+    learns the rules by viewing a series of patterns.
 \end{frame}
+
+\section{TensorFlow}
+\begin{frame}{TensorFlow: ``Library for Machine Intelligence''}
+    Instead of focusing on recreating the experiment in the book, which
+    uses ``Wickelphones'' and ``Wickelfeatures'' that never caught on,
+    improved on just a few years later as explained in \footfullcite{Ling1994}.
+\end{frame}
+
+\section{Deep learning}
+\begin{frame}{Deep learning}
+    Go through a bit of what I learned from \footfullcite{Nielsen2015}
+\end{frame}
+
 
 \end{document}
