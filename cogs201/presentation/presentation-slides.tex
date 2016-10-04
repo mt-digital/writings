@@ -1,67 +1,299 @@
 \documentclass{beamer}
 \usepackage{pgfpages}
+\usepackage{minted}
 \usepackage[utf8]{inputenc}
 % Class options include: notes, notesonly, handout, trans,
 %                        hidesubsections, shadesubsections,
 %                        inrow, blue, red, grey, brown
 
+\beamertemplatenavigationsymbolsempty
 \usepackage{listings}
-% \usepackage[spanish]{babel}
+
 \usepackage{biblatex}
 \bibliography{bib.bib}
+\setbeamerfont{footnote}{size=\tiny}
+
 
 
 % Theme for beamer presentation.
 \usepackage{beamerthemesplit}
 
 \usetheme{Berkeley}
+\hypersetup{urlcolor=blue}
+
+\title[]{Parallel Distributed Processing: Selected History up to Deep Learning}
+\author{Matthew Turner}
+\date{COGS 201 - 9/20/16}
 \begin{document}
 
+\begin{frame}
+    \titlepage
+\end{frame}
+
 \section{Introduction \& Outline}
-\begin{frame}{Introduction \& Outline}
-    Parallel Distributed Processing (PDE)
+\begin{frame}{Goals}
     \begin{enumerate}
-        \item History of PDP:\@ Development of PDE and post-PDE developments
-        \item Application of PDP: On Learning the Past Tenses of English Verbs
+        \item Give a historical overview of the development of PDP
+        \item Start a conversation about neural networks and machine learning
+        \item Identify resources to learn about cutting-edge ``machine intelligence''
+            and ``deep learning''
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Outline}
+    Parallel Distributed Processing (PDP)
+    \begin{enumerate}
+        \item History of PDP:\@ Its situation in time
+        \item Application of PDP:\@ On Learning the Past Tenses of English Verbs
         \item TensorFlow Example: Learning to classify hand-drawn digits
         \item ``Deep learning''
     \end{enumerate}
 \end{frame}
 
-\section{History of PDE}
-\begin{frame}{Hebbian rule}
+\begin{frame}{Why did I choose Chapter 18?}
+    \begin{itemize}
+        \item Worked with electrical engineers in signal processing applied to
+            physics-based imaging systems; they were machine learning experts.
+            Been curious ever since and this is my chance to learn.
+        \item At first this chapter seemed like a good way for me to
+            learn a "real-world" computational language problem. Found out it
+            is an example that both lays foundation for and is quickly superseded
+            by more recent work.
+        \item As such, look at more recent work in
+            machine learning, including deep learning, which I know even
+            less about. Please teach me!
+    \end{itemize}
+\end{frame}
 
-    Suppose \(m\) orthogonal vectors \(\mathbf{a}(1) \ldots \mathbf{a}(m)\)
+\section{History of PDP}
+\begin{frame}{Origins of PDP}
 
-    Weights matrix is written \footfullcite{Rumelhart1986a}
+    \begin{itemize}
+        \item ``earliest roots of the PDP approach can be found
+            in the work of...neurologists''
+        \item ``Feldman and Ballard (1982) laid out many of the computational principles of the PDP approach (under the name of \textit{connectionism}), and stressed the  biological implausibility of most... computational models in (AI)'' (\footfullcite[1, p. 41]{Rumelhart1986a})
+        \item ``Hopfield's (1982) contribution of the idea that played a prominent role in the development of the Boltzmann machine'' which re-appears in neural
+            networks and machine learning later
+    \end{itemize}
+\end{frame}
 
-    \begin{equation}
-        w_{ij} = \sum_{p=1}^m \mathbf{a}_i(p) \mathbf{a}_j(p)
-    \end{equation}
+\begin{frame}{The PDP renaissance}
+    Promised to imitate human learning and physiology in solving a number of
+    problems including:
+    \begin{enumerate}
+        \item Processing sentences
+        \item Place recognition
+        \item \textbf{Learning the past tense of English verbs (Ch. 18)}
+    \end{enumerate}
+    \vspace{20pt}
 
+    See [\footfullcite[Vol 2]{Rumelhart1986a}].
 \end{frame}
 
 \section{PDP application: Past tenses of English verbs}
 \begin{frame}{PDP application: Past tenses of English verbs}
-    A response to avoid the formal grammar approach,
-    which established a priori axioms and derived generative grammars
-    from there.
 
-    Instead of prescribing rules, the ``PDP Research Group'' claim their model
-    learns the rules by viewing a series of patterns.
+    Unlike the formal grammar approach, the rules for learning past tense
+    are \textit{learned} as correct examples are shown to the system.
+
+    \vspace{10px}
+
+    The connectionist/PDP
+    ``perspective eschews the concepts of symbols and rules in favor of
+    a model of the mind that closely reflects the functioning of the brain.''
+    [\footfullcite{Joanisse2015}]
 \end{frame}
+
+\begin{frame}{PDP application: Past tenses of English verbs}
+    \begin{itemize}
+        \item Model behaves like a human in that it goes through three stages
+            of past tense learning
+            \begin{enumerate}
+                \item Phase I: ten most common verbs; 8 irregular, 2 regular
+                \item Phase II: a large set of regular verbs; at this point
+                    the model gets confused and makes mistakes on the original
+                    irregular verbs it had previously learned
+                \item Phase III: expansion to more examples including the
+                    irregular verbs again; mistakes stop for first-learned
+                    irregulars
+            \end{enumerate}
+        \item ``Learning'' means presenting correct conjugations to the model,
+            e.g. GO $\rightarrow$ WENT, and changing network based on error
+        \item Mathematical vectors represent phoeneme structure in input/output
+            data. More specifically, phonemes are translated to a more complex
+            structure, ``Wickelphones'' which can build to form
+            ``Wickelfeatures''
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{PDP application: Past tenses of English verbs}
+    \framebox{\includegraphics[width=3.0in]{images/language-learning-diagram.JPG}}
+
+    \vspace{20pt}
+
+    From \footfullcite{Rumelhart1986a}
+\end{frame}
+
+\begin{frame}{Major weakness of this approach: Wickels}
+
+    ``Wickelphones'' and ``Wickelfeatures'' that never caught on. They were
+    improved upon just a few years later as explained in [\footfullcite{Ling1994}]
+    and acknowledged in Joanisse and McClelland (2015)
+    [\footfullcite{Joanisse2015}].
+
+    \vspace{20px}
+
+    \framebox{\includegraphics[width=2.0in]{images/WickelphoneParagraph.JPG}}
+
+\end{frame}
+
+
+\begin{frame}{Weaknesses of the original PDP program}
+    Criticisms centered on the
+
+    \begin{enumerate}
+            \small
+        \item ``issues of high error rates and low reliability of the experimental
+            results''
+        \item ``the inappropriateness of the training and testing
+            procedures''
+        \item ``hidden features of the representation and the network
+            architecture that facilitate learning''
+        \item ``opaque knowledge representation of the networks''
+    \end{enumerate}
+
+    (list is made of selected quotes from [\footfullcite{Ling1994}])
+\end{frame}
+
 
 \section{TensorFlow}
+
 \begin{frame}{TensorFlow: ``Library for Machine Intelligence''}
-    Instead of focusing on recreating the experiment in the book, which
-    uses ``Wickelphones'' and ``Wickelfeatures'' that never caught on,
-    improved on just a few years later as explained in \footfullcite{Ling1994}.
+    \begin{columns}[c]
+        \column{2.0in}
+        \framebox{\includegraphics[width=2.0in]{images/TensorFlow.png}}
+
+        \column{2.0in}
+        \begin{enumerate}
+            \item Python or C++
+            \item Optimized for deep learning model building, training, validating, and testing
+            \item Can configure automatic GPU utilization on Linux and Mac         \end{enumerate}
+    \end{columns}
 \end{frame}
+
+\begin{frame}{MNIST For ML Beginners: handwritten digit classification}
+    Hello, World! for machine learning.
+
+    Each digit is assigned to a class which is represented as an output vector
+    with value $1$ at the index corresponding to the digit, and $0$ elsewhere.
+
+    So for example,
+    \begin{equation}
+        0 = \begin{pmatrix}1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix},
+        1 = \begin{pmatrix}0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \ldots,
+        9 = \begin{pmatrix}0 \\ 0 \\ \vdots \\ 0 \\ 1 \end{pmatrix}
+    \end{equation}
+\end{frame}
+
+\begin{frame}[fragile]{MNIST For ML Beginners: handwritten digit classification}
+    TensorFlow Python library includes MNIST data:
+
+    \begin{minted}[mathescape, fontsize=\footnotesize,
+               frame=lines,
+               framesep=2mm]{python}
+    from tensorflow.examples.tutorials.mnist import input_data
+    mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+    \end{minted}
+
+    \vspace{0.2in}
+    \textbf{The data: pairs of images and actual digit}
+
+        \begin{columns}[c]
+            \column{2.25in}
+            \framebox{\includegraphics[width=2.25in]{images/MNIST-Matrix.png}}
+
+            \column{1.15in} Corresponds to digit $1$
+        \end{columns}
+
+
+    \begin{enumerate}
+        \item 55,000 for training
+        \item 10,000 for testing
+        \item 5,000 for validation
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{MNIST For ML Beginners: handwritten digit classification}
+    ``The training set is used to fit the models; the validation set is used to estimate prediction error for model selection; the test set is used for assessment of the generalization error of the final chosen model. Ideally, the test set should be kept in a “vault,” and be brought out only at the end of the data analysis''\footfullcite[p. 222]{Hastie2009}
+
+
+    \begin{enumerate}
+        \item 55,000 for training
+        \item 10,000 for testing
+        \item 5,000 for validation
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Training \& back-propagation}
+    The back propagation technique was one of the major contributions of the
+    PDP research group, by Rumelhart, et al., 1986. The conceptual outline of
+    training the neural network is below.
+
+    \footfullcite{Rumelhart1986}
+
+    \begin{itemize}
+        \item Present the inputs, calculate outputs using the current weights (initialize weights to random values for first presentation)
+        \item Check difference between input and output
+        \item Adjust weights according to difference and the back propagation algorithm
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Training \& back-propagation}
+``the backpropagation equations are so rich that understanding them well requires considerable time and patience as you gradually delve deeper into the equations. The good news is that such patience is repaid many times over.''\footfullcite{Nielsen2015}
+\end{frame}
+
+\begin{frame}{Some confusing terminology}
+    ``Hidden layer'': not an input or an output layer
+\\
+    \textbf{Perceptrons:} neurons where the output activation is either 0 or 1
+\\
+    \textbf{Sigmoid neurons:} digit learning used sigmoid neurons
+        where activation is a decimal between 0 and 1
+\end{frame}
+
+\begin{frame}{ML beginners: ``Neural network in the browser''}
+
+    \framebox{\includegraphics[width=3.5in]{images/browser-nn.png}} \\
+    \href{http://playground.tensorflow.org}{playground.tensorflow.org}
+\end{frame}
+
 
 \section{Deep learning}
+
 \begin{frame}{Deep learning}
-    Go through a bit of what I learned from \footfullcite{Nielsen2015}
+    The depth of deep learning comes from the number of layers used in the
+    network. As the number of layers is increased, there is also a hierarchical
+    dependency added. This allows the network to represent the types of
+    hierarchical patterning that occurs in many natural data sources
+    \footfullcite{Nielsen2015, Tensorflow.orga}.
+
+    \vspace{20px}
+
+    See this
+    \href{https://github.com/zer0n/deepframeworks/blob/master/README.md}{comparison of popular deep learning frameworks on GitHub}
+    and read for more info on deep learning frameworks including TensorFlow.
 \end{frame}
 
+
+\begin{frame}
+    According to \href{https://en.wikipedia.org/wiki/TensorFlow}{Wikipedia}
+    Google has been running Tensor Processing Units for over a year in their
+    data centers. These TPUs are like GPUs, but specialized not just for matrix
+    multiplications, but for the "tensors", the multidimensional arrays,
+    of TensorFlow.
+\end{frame}
 
 \end{document}
